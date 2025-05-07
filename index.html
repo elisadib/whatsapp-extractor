@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Extractor de contactos de WhatsApp</title>
+</head>
+<body>
+  <h1>Extraer contactos desde WhatsApp Web</h1>
+  <p>
+    Abre <a href="https://web.whatsapp.com" target="_blank">WhatsApp Web</a> y abre el grupo del que deseas extraer contactos.
+    Luego abre la consola del navegador (clic derecho > Inspeccionar > Consola) y pega el siguiente código:
+  </p>
+  <button onclick="copiarCodigo()">📋 Copiar script al portapapeles</button>
+  <pre id="codigo" style="background:#eee; padding:1em;">
+const nombres = [...document.querySelectorAll("._2EXPL")];
+const lista = nombres.map(e => e.innerText).filter(Boolean);
+console.log("Contactos encontrados:", lista);
+copy(lista.join("\n"));</pre>
+
+  <script>
+    function copiarCodigo() {
+      const texto = document.getElementById("codigo").innerText;
+      navigator.clipboard.writeText(texto).then(() => {
+        alert("Código copiado al portapapeles. Ve a WhatsApp Web y pégalo en la consola.");
+      });
+    }
+  </script>
+</body>
+</html>
